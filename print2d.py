@@ -52,7 +52,7 @@ def bmpToAnsi(bmp):
                 out += pixelsToAnsi((bmp[row][col], bmp[row + 1][col]))
             except IndexError:
                 out += pixelsToAnsi((bmp[row][col], 0))
-        out += "\n"
+        out += f"{reset}\n"
     return out
 
 def print2d(bmp):
