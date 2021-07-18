@@ -55,5 +55,5 @@ def bmpToAnsi(bmp):
         out += f"{reset}\n"
     return out
 
-def print2d(bmp):
+def printBmp(bmp):
     print(bmpToAnsi(bmp))
