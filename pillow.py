@@ -12,14 +12,16 @@ if len(sys.argv) == 3:
 else:
     tr = False
 
-print("[", end="")
+out = ""
+out += "["
 for i in range(height):
-    print("[", end="")
+    out += "["
     for j in range(width):
         if tr and trPx[j, i] == 0:
-            print("0, ", end="")
+            out += "0, "
         else:
-            print(str(px[j,i]) + ", ", end="")
-    print("],")
-print("]", end="")
+            out += str(px[j,i]) + ", "
+    out += "],\n"
+out += "]"
+print(out)
 #import pdb; pdb.set_trace()
