@@ -19,7 +19,7 @@ def setColorBg(color):
 
 blockGraphicsColor = {
     (False, False): 
-        f"{chr(0x1B)}[39m{chr(0x1B)}[49m ", 
+        f"{chr(0x1B)}[0m ", 
     (False, True): 
         f"{chr(0x1B)}[49m{chr(0x1B)}[38;2;{{pixels[1][0]}};{{pixels[1][1]}};{{pixels[1][2]}}m▄",
     (True, False): 
