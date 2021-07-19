@@ -26,21 +26,31 @@ def pixelsToAnsi(pixels=(0,0)):
     except TypeError:
         return blockGraphics[pixels[0] != False, pixels[1] != False]
 
-def bmpToAnsi(bmp):
+def bmpToAnsi(bmp, returnList=False):
     size = (
         len(bmp),
         max(map(len, bmp))
     )
 
-    out = ""
-    for row in range(0, size[0], 2):
-        for col in range(size[1]):
+    out = []
+    for rowIndex in range(0, size[0], 2):
+        row = []
+        for colIndex in range(size[1]):
             try:
-                out += pixelsToAnsi((bmp[row][col], bmp[row + 1][col]))
+                row.append(pixelsToAnsi((bmp[rowIndex][colIndex], bmp[rowIndex + 1][colIndex])))
             except IndexError:
-                out += pixelsToAnsi((bmp[row][col], 0))
-        out += f"{chr(0x1B)}[0m\n"
-    return out
+                row.append(pixelsToAnsi((bmp[rowIndex][colIndex], 0)))
+        row.append(f"{chr(0x1B)}[0m\n")
+        out.append(row)
+
+    if returnList:
+        return out
+    else:
+        return "".join(sum(out, []))
 
 def printBmp(bmp):
     print(bmpToAnsi(bmp))
+
+reset = f"{chr(0x1B)}[0m"
+def setFg(r, g, b): return f"{chr(0x1B)}[38;2;{r};{g};{b}m"
+def setBg(r, g, b): return f"{chr(0x1B)}[48;2;{r};{g};{b}m"
