@@ -26,8 +26,6 @@ def pixelsToAnsi(pixels=(0,0)):
     except TypeError:
         return blockGraphics[pixels[0] != False, pixels[1] != False]
 
-reset = f"{chr(0x1B)}[0m"
-
 def bmpToAnsi(bmp):
     size = (
         len(bmp),
@@ -41,7 +39,7 @@ def bmpToAnsi(bmp):
                 out += pixelsToAnsi((bmp[row][col], bmp[row + 1][col]))
             except IndexError:
                 out += pixelsToAnsi((bmp[row][col], 0))
-        out += f"{reset}\n"
+        out += f"{chr(0x1B)}[0m\n"
     return out
 
 def printBmp(bmp):
