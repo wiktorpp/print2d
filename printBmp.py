@@ -52,5 +52,7 @@ def printBmp(bmp):
     print(bmpToAnsi(bmp))
 
 reset = f"{chr(0x1B)}[0m"
+resetFg = f"{chr(0x1B)}[39m"
+resetBg = f"{chr(0x1B)}[49m"
 def setFg(r, g, b): return f"{chr(0x1B)}[38;2;{r};{g};{b}m"
 def setBg(r, g, b): return f"{chr(0x1B)}[48;2;{r};{g};{b}m"
