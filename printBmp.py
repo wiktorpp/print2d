@@ -9,14 +9,6 @@ blockGraphics = {
     (True, True): "█"
 }
 
-"""
-def setColorFg(color):
-    return f"{esc}[38;2;{color[0]};{color[1]};{color[2]}m"
-
-def setColorBg(color):
-    return f"{esc}[48;2;{pixelEven[0]};{pixelEven[1]};{pixelEven[2]}m"
-"""
-
 blockGraphicsColor = {
     (False, False): 
         f"{chr(0x1B)}[0m ", 
@@ -41,13 +33,10 @@ def bmpToAnsi(bmp):
         len(bmp),
         max(map(len, bmp))
     )
-    
-    #print(size)
 
     out = ""
     for row in range(0, size[0], 2):
         for col in range(size[1]):
-            #print(f"{row} {col} {row + 1} {col}")
             try:
                 out += pixelsToAnsi((bmp[row][col], bmp[row + 1][col]))
             except IndexError:
