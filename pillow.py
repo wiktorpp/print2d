@@ -17,21 +17,24 @@ if len(sys.argv) == 3:
 else:
     tr = False
 
-out = ""
-out += "["
+bmp = []
 for i in range(height):
-    out += "["
+    row = []
     for j in range(width):
         if monochrome:
             if px[j,i] == 255:
-                out += "1, "
+                row.append(1)
             else:
-                out += "0, "
+                row.append(0)
         elif tr and trPx[j, i] == 0:
-            out += "0, "
+            row.append(0)
         else:
-            out += str(px[j,i]) + ", "
-    out += "],\n"
-out += "]"
-print(out)
-#import pdb; pdb.set_trace()
+            row.append(px[j,i])
+    bmp.append(row)
+print(bmp)
+
+try:
+    from printBmp import printBmp
+    printBmp(bmp)
+except:
+    pass
