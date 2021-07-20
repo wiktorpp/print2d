@@ -8,14 +8,15 @@ width, height = im.size
 if monochrome:
     im = im.convert("L")
 px = im.load()
-if len(sys.argv) == 3:
+try:
     trIm = Image.open(sys.argv[2])
+except:
+    tr = False
+else:
     width, height = trIm.size
     trIm = trIm.convert("L")
     trPx = trIm.load()
     tr = True
-else:
-    tr = False
 
 bmp = []
 for i in range(height):
@@ -38,3 +39,10 @@ try:
     printBmp(bmp)
 except:
     pass
+
+try:
+    file = sys.argv[3]
+except:
+    pass
+else:
+    open(file, "w").write(f"{file.split('.')[0]} = {str(bmp)}")
