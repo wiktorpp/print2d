@@ -13,18 +13,18 @@ blockGraphicsColor = {
     (False, False): 
         f"{chr(0x1B)}[0m ", 
     (False, True): 
-        f"{chr(0x1B)}[49m{chr(0x1B)}[38;2;{{pixels[1][0]}};{{pixels[1][1]}};{{pixels[1][2]}}m▄",
+        f"{chr(0x1B)}[49m{chr(0x1B)}[38;2;{{pixelPair[1][0]}};{{pixelPair[1][1]}};{{pixelPair[1][2]}}m▄",
     (True, False): 
-        f"{chr(0x1B)}[38;2;{{pixels[0][0]}};{{pixels[0][1]}};{{pixels[0][2]}}m{chr(0x1B)}[49m▀",
+        f"{chr(0x1B)}[38;2;{{pixelPair[0][0]}};{{pixelPair[0][1]}};{{pixelPair[0][2]}}m{chr(0x1B)}[49m▀",
     (True, True): 
-        f"{chr(0x1B)}[48;2;{{pixels[0][0]}};{{pixels[0][1]}};{{pixels[0][2]}}m{chr(0x1B)}[38;2;{{pixels[1][0]}};{{pixels[1][1]}};{{pixels[1][2]}}m▄"
+        f"{chr(0x1B)}[48;2;{{pixelPair[0][0]}};{{pixelPair[0][1]}};{{pixelPair[0][2]}}m{chr(0x1B)}[38;2;{{pixelPair[1][0]}};{{pixelPair[1][1]}};{{pixelPair[1][2]}}m▄"
 }
 
-def pixelsToAnsi(pixels=(0,0)):
+def pixelsToAnsi(pixelPair=(0,0)):
     try:
-        return blockGraphicsColor[pixels[0] != False, pixels[1] != False].format(pixels=pixels)
+        return blockGraphicsColor[pixelPair[0] != False, pixelPair[1] != False].format(pixelPair=pixelPair)
     except TypeError:
-        return blockGraphics[pixels[0] != False, pixels[1] != False]
+        return blockGraphics[pixelPair[0] != False, pixelPair[1] != False]
 
 def bmpToAnsi(bmp, returnList=False):
     size = (
