@@ -1,7 +1,6 @@
 from printBmp import *
 import colorsys
 import time
-import signal
 
 try:
     while True:
