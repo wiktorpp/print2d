@@ -3,9 +3,6 @@ import colorsys
 import time
 import signal
 
-signal.signal(signal.SIGINT, lambda sig, frame: [print(reset), exit()])
-print("Press Ctrl-C to exit.")
-
 try:
     while True:
         for i in range(100): 
@@ -14,4 +11,4 @@ try:
             color = (int(color[0] * 255), int(color[1] * 255), int(color[2] * 255))
             print(f"{esc}[D" + pixelsToAnsi((color, color)), end="", flush=True)
 except:
-    pass
+    print(reset)
