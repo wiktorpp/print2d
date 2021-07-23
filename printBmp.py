@@ -1,6 +1,15 @@
 import os
 import sys
-esc = chr(0x1B)
+
+class ansi:
+    esc = chr(0x1B)
+    fg = f"{esc}[38;2;{{r}};{{g}};{{b}}m"
+    bg = f"{esc}[48;2;{{r}};{{g}};{{b}}m"
+    def setFg(r, g, b): return ansi.fg.format(r=r, g=g, b=b)
+    def setBg(r, g, b): return ansi.bg.format(r=r, g=g, b=b)
+    reset = f"{esc}[0m"
+    resetFg = f"{esc}[39m"
+    resetBg = f"{esc}[49m"
 
 blockGraphics = {
     (False, False): " ", 
@@ -21,6 +30,7 @@ blockGraphicsColor = {
 }
 
 def pixelsToAnsi(pixelPair=(0,0)):
+    #pixelPairVisibility
     try:
         return blockGraphicsColor[pixelPair[0] != False, pixelPair[1] != False].format(pixelPair=pixelPair)
     except TypeError:
@@ -50,10 +60,3 @@ def bmpToAnsi(bmp, returnList=False):
 
 def printBmp(bmp):
     print(bmpToAnsi(bmp))
-
-esc = chr(0x1B)
-reset = f"{chr(0x1B)}[0m"
-resetFg = f"{chr(0x1B)}[39m"
-resetBg = f"{chr(0x1B)}[49m"
-def setFg(r, g, b): return f"{chr(0x1B)}[38;2;{r};{g};{b}m"
-def setBg(r, g, b): return f"{chr(0x1B)}[48;2;{r};{g};{b}m"
