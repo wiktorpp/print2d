@@ -3,7 +3,12 @@ import sys
 
 monochrome = False
 
-im = Image.open(sys.argv[1])
+try: 
+    imFilename = sys.argv[1]
+except:
+    print("usage: ./convert.py <image> [transparency] > <output>")
+
+im = Image.open(imFilename)
 width, height = im.size
 if monochrome:
     im = im.convert("L")
