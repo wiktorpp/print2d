@@ -7,6 +7,7 @@ try:
     imFilename = sys.argv[1]
 except:
     print("usage: ./convert.py <image> [transparency] > <output>")
+    exit()
 
 im = Image.open(imFilename)
 width, height = im.size
