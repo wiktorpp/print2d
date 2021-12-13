@@ -41,4 +41,4 @@ for i in range(height):
 
 from printBmp import bmpToAnsi
 output = bmpToAnsi(bmp)
-print(output)
+print(output, end="")

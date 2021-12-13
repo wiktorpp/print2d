@@ -59,4 +59,4 @@ def bmpToAnsi(bmp, returnList=False):
         return "".join(sum(out, []))
 
 def printBmp(bmp):
-    print(bmpToAnsi(bmp))
+    print(bmpToAnsi(bmp), end="")
