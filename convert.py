@@ -39,9 +39,6 @@ for i in range(height):
             row.append(px[j,i])
     bmp.append(row)
 
-try:
-    from printBmp import bmpToAnsi
-    output = bmpToAnsi(bmp)
-    print(output)
-except:
-    raise Exception
+from printBmp import bmpToAnsi
+output = bmpToAnsi(bmp)
+print(output)
