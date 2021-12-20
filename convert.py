@@ -19,7 +19,6 @@ try:
 except:
     tr = False
 else:
-    width, height = trIm.size
     trIm = trIm.convert("L")
     trPx = trIm.load()
     tr = True
