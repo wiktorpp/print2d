@@ -6,7 +6,7 @@ monochrome = False
 try: 
     imageFilename = sys.argv[1]
 except:
-    print("usage: ./convert.py <image> [transparency] > <output>")
+    print("usage: ./convert.py <image> [transparency] [raw|python|hex] > <output>")
     exit()
 
 image = Image.open(imageFilename)
@@ -40,4 +40,17 @@ for i in range(height):
 
 from printBmp import bmpToAnsi
 output = bmpToAnsi(bmp)
-print(output, end="")
+try: sys.argv[3]
+except IndexError:
+    print(output, end="")
+else:
+    if sys.argv[3] == "raw":
+        print(output, end="")
+    elif sys.argv[3] == "python":
+        from codecs import encode
+        print(encode(output, "unicode_escape").decode("utf-8"))
+    elif sys.argv[3] == "hex":
+        from codecs import encode
+        print(encode(output.encode('utf-8'), "hex").decode("utf-8"))
+    else:
+        raise ValueError("Invalid encoding")
