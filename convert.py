@@ -6,7 +6,7 @@ monochrome = False
 try: 
     imageFilename = sys.argv[1]
 except:
-    print("usage: ./convert.py <image> [transparency] [raw|python|hex|base64|...] > <output>")
+    print("usage: ./convert.py <image> [transparency] [raw|python|hex|base64|...] > [output]")
     exit()
 
 image = Image.open(imageFilename)
