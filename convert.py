@@ -16,8 +16,12 @@ if monochrome:
 pixelmap = image.load()
 try:
     transparencyImage = Image.open(sys.argv[2])
-except:
+except IndexError:
     transparency = False
+except FileNotFoundError:
+    transparency = False
+    sys.stderr.write("Invalid transparency layer, ignoring.\n")
+    sys.stderr.flush()
 else:
     transparencyImage = transparencyImage.convert("L")
     transparencyPixelmap = transparencyImage.load()
